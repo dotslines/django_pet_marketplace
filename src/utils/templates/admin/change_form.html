@@ -1,0 +1,71 @@
+<!-- Custom template for adding tabs(put field sets into the separate tabs) on the instance change page 
+    in order to not have to scroll a lot in case the instance has a lot of fields. -->
+{% extends "admin/change_form.html" %}
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+        /* Style tab links */
+        .tablink {
+        background-color: #417690;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        font-size: 12px;
+        width: 100%;
+        }
+        
+        .tablink:hover {
+        background-color: #79aec8;
+        }
+        
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+        display: none;
+        padding: 20px;
+        height: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block field_sets %}
+    <div style="display:flex;justify-content:space-between;padding: 0;">
+        {% for fieldset in adminform %}
+            <button class="tablink" 
+            onclick="openPage('{% if forloop.first %}defaultOpen{% else %}{{fieldset.name}}{% endif %}', this)"
+            {% if forloop.first %}style="background-color:#79aec8;"{% endif %}>
+                {% if fieldset.name %}<h4>{{ fieldset.name }}</h4>{% else %}<h4>General fields</h4>{% endif %}
+            </button>
+        {% endfor %}
+    </div>
+    {% for fieldset in adminform %}
+        <div id="{% if forloop.first %}defaultOpen{% else %}{{fieldset.name}}{% endif %}" class="tabcontent">
+            {% include "admin/includes/fieldset.html" %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+    <script>
+        function openPage(pageName,elmnt) {
+            event.preventDefault();
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = '#79aec8';
+        }
+        
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").style.display = "block";
+    </script>
+{% endblock %}

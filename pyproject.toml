@@ -1,0 +1,64 @@
+[project]
+name = "marketplace-backend"
+version = "2023.10.03"
+requires-python = ">=3.10"
+dependencies = [
+    "Django",
+    "djangorestframework",
+    "django-environ",
+    "django-healthchecks",
+    "django-split-settings",
+    "drf-spectacular[sidecar]",
+    "drf-jwt",
+    "celery[redis]",
+    "pillow",
+    "psycopg2-binary",
+    "Pygments",
+    "six",
+]
+
+[project.optional-dependencies]
+dev = [
+    "django-debug-toolbar",
+    "pytest-django",
+    "pytest-factoryboy",
+    "pytest-cov",
+    "pytest-deadfixtures",
+    "coverage",
+    "factory-boy",
+    "faker",
+
+    "black",
+
+    "autoflake",
+    "flake8-isort",
+    "flake8-pytest",
+    "flake8-pytest-style",
+
+    "mypy",
+    "django-stubs",
+    "djangorestframework-stubs",
+    "types-Pygments"
+]
+
+[tool.isort]
+profile = "google"
+line_length = 119
+multi_line_output = 3
+use_parentheses = true
+extra_standard_library = ["pytest"]
+known_django = ["django", "restframework"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.black]
+exclude = '''
+/(
+  | migrations
+)/
+'''
+line_length = 119
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "test.settings"
+# -- recommended but optional:
+python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]
