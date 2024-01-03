@@ -16,4 +16,5 @@ __pycache__/
 venv/
 
 # Miscellaneous
+notes/
 requirements*
