@@ -1,0 +1,13 @@
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=marketplace
+POSTGRES_USER=marketplace_user
+POSTGRES_PASSWORD=secret1234
+
+DB_HOST=postgres
+DB_PORT=5432
+DB_NAME=marketplace
+DB_USER=marketplace_user
+DB_PASS=secret1234
+
+DATABASE_URL=postgres://marketplace_user:secret1234@postgres:5432/marketplace

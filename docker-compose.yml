@@ -1,0 +1,64 @@
+services:
+  postgres:
+    image: postgres:14.6-alpine
+    ports:
+      - "5433:5432"
+    # environment:
+    #   - POSTGRES_DB=dbname
+    #   - POSTGRES_USER=dbuser
+    #   - POSTGRES_PASSWORD=password
+    env_file:
+      - .env
+  app:
+    build: 
+      context: .
+    user: projectuser:projectuser
+    ports:
+      - "8000:8000"
+    # volumes:
+      # - ./src:/src
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - worker
+    env_file:
+      - .env
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+  worker:
+    build: 
+      context: .
+    hostname: worker
+    entrypoint: celery
+    command: -A app.celery.app worker --loglevel=info
+    # volumes:
+    #   - ./src:/src
+    links:
+      - redis
+    depends_on:
+      - redis
+      - postgres
+    env_file:
+      - .env
+  flower:
+    build: 
+      context: .
+    hostname: flower
+    entrypoint: celery
+    command: -A app.celery.app flower
+    # volumes:
+    #   - ./src:/src
+    links:
+      - redis
+    depends_on:
+      - app
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"

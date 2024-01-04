@@ -11,11 +11,10 @@ __pycache__/
 
 # env
 .env
-
-# virtualenv
 venv/
 
 # Miscellaneous
+htmlcov/
 notes/
 requirements*
 to_do
