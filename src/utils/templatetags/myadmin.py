@@ -20,6 +20,4 @@ def submit_row_no_delete(context):
 
 @register.tag(name="submit_row_no_deletion")
 def submit_row_no_deletion(parser, token):
-    return InclusionAdminNode(
-        parser, token, func=submit_row_no_delete, template_name="submit_line.html"
-    )
+    return InclusionAdminNode(parser, token, func=submit_row_no_delete, template_name="submit_line.html")

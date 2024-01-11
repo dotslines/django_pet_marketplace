@@ -13,7 +13,6 @@ class Singleton(models.Model):
 
     def delete(self, *args: Any, **kwargs: Any) -> None:
         "Assumed that should not be deletion."
-        pass
 
     @classmethod
     def load(cls) -> models.Model:

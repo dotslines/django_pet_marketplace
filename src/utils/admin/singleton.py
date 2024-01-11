@@ -13,8 +13,7 @@ class SingletonAdmin(admin.ModelAdmin):
             obj = self.model.objects.all()[0]
             return HttpResponseRedirect(
                 reverse(
-                    "admin:%s_%s_change" % (self.model._meta.app_label, self.model._meta.model_name),
-                    args=(obj.id,)
+                    "admin:%s_%s_change" % (self.model._meta.app_label, self.model._meta.model_name), args=(obj.id,)
                 )
             )
         return super().changelist_view(request=request, extra_context=extra_context)
