@@ -1,4 +1,7 @@
+from typing import Any, Never
+
 import factory
+from factory import SubFactory
 from faker import Faker
 
 from tests.accounts.factories import SellerFactory
@@ -34,7 +37,7 @@ class ImageFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = "products.Image"
 
-    gallery = factory.SubFactory(GalleryFactory)
+    gallery: SubFactory[Never, Any] = factory.SubFactory(GalleryFactory)
     name = "image name"
     slug = "image slug"
     image = "path/to/image"
@@ -46,10 +49,10 @@ class ProductFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = "products.Product"
 
-    owner = factory.SubFactory(SellerFactory)
-    category = factory.SubFactory(CategoryFactory)
-    brand = factory.SubFactory(BrandFactory)
-    gallery = factory.SubFactory(GalleryFactory)
+    owner: SubFactory[Never, Any] = factory.SubFactory(SellerFactory)
+    category: SubFactory[Never, Any] = factory.SubFactory(CategoryFactory)
+    brand: SubFactory[Never, Any] = factory.SubFactory(BrandFactory)
+    gallery: SubFactory[Never, Any] = factory.SubFactory(GalleryFactory)
     name = "product name"
     slug = "product slug"
     price = 100.00

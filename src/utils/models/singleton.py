@@ -9,10 +9,11 @@ class Singleton(models.Model):
 
     def save(self, *args: Any, **kwargs: Any) -> None:
         self.pk = 1
-        super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
-    def delete(self, *args: Any, **kwargs: Any) -> None:
+    def delete(self, *args: Any, **kwargs: Any) -> tuple[int, dict[str, int]]:
         "Assumed that should not be deletion."
+        return super().delete(*args, **kwargs)
 
     @classmethod
     def load(cls) -> models.Model:

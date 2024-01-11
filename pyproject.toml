@@ -27,6 +27,7 @@ dev = [
     "pytest-deadfixtures",
     "coverage",
     "factory-boy",
+    "types-factory-boy",
     "faker",
 
     "black",

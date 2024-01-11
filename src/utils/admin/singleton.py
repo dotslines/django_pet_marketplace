@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
 class SingletonAdmin(admin.ModelAdmin):
-    def changelist_view(self, request, extra_context=None):
+    def changelist_view(self, request: HttpRequest, extra_context: None | dict = None) -> HttpResponse:
         """
         Open change page instead of list view page.
         Needed for singleton models.

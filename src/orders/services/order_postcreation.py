@@ -10,9 +10,14 @@ class OrderPostCreation:
         self.send_mail()
 
     def send_mail(self) -> None:
+        owner = self.order.owner
+        if owner:
+            to_email = owner.email
+        else:
+            to_email = ""
         send_email.delay(
             subject=f"Order {self.order.id} created.",
             body=f"The order ID is {self.order.id}.",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to_email=[f"{self.order.owner.email}"],
+            to_email=[to_email],
         )

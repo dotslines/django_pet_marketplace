@@ -9,7 +9,7 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ("id", "owner", "products")
 
-    def create(self, validated_data):
+    def create(self, validated_data: dict) -> Order:
         instance = super().create(validated_data)
         OrderPostCreation(instance)
 
