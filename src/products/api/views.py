@@ -28,6 +28,7 @@ class CategoriesListAPIView(ListAPIView):
 
 class CategoryAPIView(APIView):
     permission_classes = [AllowAny]
+    serializer_class = CategorySerializer
 
     def get(self, request: Request, category_slug: str) -> Response:
         category = get_object_or_404(Category, slug=category_slug)

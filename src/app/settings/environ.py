@@ -17,6 +17,8 @@ env_path = BASE_DIR / ".env"
 if os.path.exists(env_path):
     environ.Env.read_env(env_path)  # reading .env file
 
+DEBUG = env("DEBUG", cast=bool, default=False)
+
 __all__ = [
     "env",
 ]
