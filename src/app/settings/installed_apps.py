@@ -23,4 +23,6 @@ INSTALLED_APPS = [
 
 
 if env("DEBUG", cast=bool):
-    INSTALLED_APPS += ["debug_toolbar",]
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]

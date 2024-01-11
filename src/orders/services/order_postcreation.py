@@ -14,5 +14,5 @@ class OrderPostCreation:
             subject=f"Order {self.order.id} created.",
             body=f"The order ID is {self.order.id}.",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to_email=[f"{self.order.owner.email}"]
+            to_email=[f"{self.order.owner.email}"],
         )

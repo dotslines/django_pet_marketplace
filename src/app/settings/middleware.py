@@ -1,6 +1,5 @@
 from app.settings.environ import env
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -12,4 +11,6 @@ MIDDLEWARE = [
 ]
 
 if env("DEBUG", cast=bool):
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware",]
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]

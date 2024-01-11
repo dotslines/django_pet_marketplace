@@ -25,7 +25,7 @@ class User(AbstractUser):
 
 
 class Buyer(User):
-    objects = BuyerManager()    # type: ignore
+    objects = BuyerManager()  # type: ignore
 
     class Meta:
         proxy = True
@@ -36,7 +36,7 @@ class Buyer(User):
 
 
 class Seller(User):
-    objects = SellerManager()    # type: ignore
+    objects = SellerManager()  # type: ignore
 
     class Meta:
         proxy = True
