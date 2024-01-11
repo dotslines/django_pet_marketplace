@@ -1,0 +1,4 @@
+<!-- Custom template. Overriding  submit_row tag with custom one.-->
+{% extends "admin/change_form.html" %}
+{% load myadmin %}
+{% block submit_buttons_bottom %}{% submit_row_no_deletion %}{% endblock %}
