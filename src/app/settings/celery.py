@@ -1,3 +1,5 @@
+from celery.schedules import crontab
+
 from app.settings.environ import env
 
 CELERY_TIMEZONE = "Australia/Tasmania"
@@ -10,3 +12,10 @@ if env("DEBUG", cast=bool):
 else:
     CELERY_BROKER_URL = "redis://redis:6379/0"
     CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+
+CELERYBEAT_SCHEDULE = {
+    "send-created-per-day-orders-report": {
+        "task": "orders.tasks.send_amount_of_new_orders_to_manager",
+        "schedule": crontab(minute=30, hour=0),
+    },
+}

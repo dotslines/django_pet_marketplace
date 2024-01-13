@@ -19,7 +19,7 @@ def get_orders_count(last_day: date) -> datetime:
     return lastday_orders_count
 
 
-@shared_task
+@shared_task(ignore_result=True)
 def send_amount_of_new_orders_to_manager() -> None:
     last_day = date.today() - timedelta(days=1)
     lastday_orders_count = get_orders_count(last_day)
