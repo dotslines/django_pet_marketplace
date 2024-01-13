@@ -12,7 +12,7 @@ from e_mailing.tasks import send_email
 from .models import Order
 
 
-def get_orders_count(last_day: date) -> datetime:
+def get_orders_count(last_day: date) -> int:
     gte = datetime.combine(date.today(), time.min) - timedelta(days=1)
     lte = datetime.combine(date.today(), time.max) - timedelta(days=1)
     lastday_orders_count = Order.objects.filter(created__gte=gte, created__lte=lte).count()
