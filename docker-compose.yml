@@ -8,7 +8,7 @@ services:
     #   - POSTGRES_USER=dbuser
     #   - POSTGRES_PASSWORD=password
     env_file:
-      - .env
+      - .docker_env
   app:
     build: 
       context: .
@@ -27,7 +27,7 @@ services:
     depends_on:
       - worker
     env_file:
-      - .env
+      - .docker_env
   redis:
     image: redis:7.0.5-alpine
     hostname: redis
@@ -45,7 +45,7 @@ services:
       - redis
       - postgres
     env_file:
-      - .env
+      - .docker_env
   flower:
     build: 
       context: .
@@ -59,6 +59,6 @@ services:
     depends_on:
       - app
     env_file:
-      - .env
+      - .docker_env
     ports:
       - "5555:5555"
