@@ -16,6 +16,7 @@ dependencies = [
     "psycopg2-binary",
     "Pygments",
     "six",
+    "pika",
 ]
 
 [project.optional-dependencies]

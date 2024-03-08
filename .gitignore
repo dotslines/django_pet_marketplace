@@ -18,3 +18,4 @@ htmlcov/
 notes/
 requirements*
 to_do
+.coverage*

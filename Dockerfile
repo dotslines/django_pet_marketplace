@@ -2,6 +2,9 @@ FROM python:3.11.3-alpine3.16
 
 COPY requirements.txt /requirements.txt
 COPY src /src
+COPY shell-scripts/start-amqp-consumer.sh /shell-scripts/start-amqp-consumer.sh
+
+RUN shell-scripts/start-amqp-consumer.sh
 
 WORKDIR /src
 EXPOSE 8000

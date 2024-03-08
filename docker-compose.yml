@@ -10,8 +10,10 @@ services:
     env_file:
       - .docker_env
   app:
+    image: "backend-app"
     build: 
       context: .
+      dockerfile: Dockerfile
     user: projectuser:projectuser
     ports:
       - "8000:8000"
@@ -26,6 +28,7 @@ services:
         python manage.py runserver 0.0.0.0:8000
     depends_on:
       - worker
+      - rmq
     env_file:
       - .docker_env
   redis:
@@ -62,3 +65,17 @@ services:
       - .docker_env
     ports:
       - "5555:5555"
+  rmq:
+    image: rabbitmq:3.10-management
+    restart: always
+    container_name: demo_rmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RMQ_PASS}
+    env_file:
+      - .docker_env
+    # volumes:
+      # - rabbitmq_data_volume:/var/lib/rabbitmq/
+    ports:
+      - 1234:15672
+      - 5671-5672:5671-5672
