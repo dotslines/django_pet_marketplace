@@ -59,7 +59,6 @@ exclude = '''
   | migrations
 )/
 '''
-line_length = 119
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "test.settings"

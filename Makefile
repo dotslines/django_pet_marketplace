@@ -5,7 +5,7 @@ compile-deps:
 	./shell-scripts/check-req-exists.sh
 	pip install --upgrade pip pip-tools
 	pip-compile --output-file requirements.txt 
-				--resolver=backtracking pyproject.toml
+				--resolver=backtracking
 
 .PHONY: install-deps
 install-deps: compile-deps
@@ -18,7 +18,7 @@ compile-deps-dev:
 	pip install --upgrade pip pip-tools
 	pip-compile --extra=dev
 				--output-file requirements-dev.txt
-				--resolver=backtracking pyproject.toml
+				--resolver=backtracking
 
 .PHONY: install-deps-dev
 install-deps-dev: compile-deps compile-deps-dev

@@ -5,7 +5,7 @@ import pika
 from django.conf import settings
 
 
-class AMQPOrderCreatedConsumer(threading.Thread):
+class AMQPAMQPOrderCreatedConsumer(threading.Thread):
     EXCHANGE = settings.RMQ_ORDER_EXCHANGE
     QUEUE_NAME = settings.RMQ_ORDER_CREATED_QUEUE
     ROUTING_KEY = settings.RMQ_ORDER_CREATED_ROUTING_KEY

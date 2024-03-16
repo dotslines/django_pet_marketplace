@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from reports.mq_consumer import AMQPOrderCreatedConsumer
+from reports.mq_consumer import AMQPAMQPOrderCreatedConsumer
 
 
 class Command(BaseCommand):
@@ -13,6 +13,6 @@ class Command(BaseCommand):
     help = "Launches a consumer for order_created message."
 
     def handle(self, *args, **options):
-        consumer = AMQPOrderCreatedConsumer()
+        consumer = AMQPAMQPOrderCreatedConsumer()
         consumer.start()
         self.stdout.write("Started Consumer Thread")

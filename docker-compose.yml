@@ -26,6 +26,7 @@ services:
         python manage.py makemigrations
         python manage.py migrate
         python manage.py runserver 0.0.0.0:8000
+      - shell-scripts/start-amqp-consumer.sh
     depends_on:
       - worker
       - rmq
@@ -78,4 +79,4 @@ services:
       # - rabbitmq_data_volume:/var/lib/rabbitmq/
     ports:
       - 1234:15672
-      - 5671-5672:5671-5672
+      - 35671-35672:5671-5672

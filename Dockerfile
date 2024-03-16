@@ -4,10 +4,10 @@ COPY requirements.txt /requirements.txt
 COPY src /src
 COPY shell-scripts/start-amqp-consumer.sh /shell-scripts/start-amqp-consumer.sh
 
-RUN shell-scripts/start-amqp-consumer.sh
-
 WORKDIR /src
 EXPOSE 8000
+
+RUN chmod 755 /shell-scripts/start-amqp-consumer.sh
 
 RUN apk add postgresql-client build-base postgresql-dev
 RUN pip install -r ../requirements.txt
