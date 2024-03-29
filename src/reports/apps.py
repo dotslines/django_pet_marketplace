@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 from django.conf import settings
 
-from .mq_consumer import AMQPOrderCreatedConsumer
+from .mq_consumer import AMQPAMQPOrderCreatedConsumer
 
 
 class ReportsConfig(AppConfig):
@@ -10,6 +10,6 @@ class ReportsConfig(AppConfig):
 
     def ready(self):
         if not settings.IS_TESTING:
-            consumer = AMQPOrderCreatedConsumer()
+            consumer = AMQPAMQPOrderCreatedConsumer()
             consumer.daemon = True
             consumer.start()
